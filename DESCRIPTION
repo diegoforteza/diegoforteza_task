@@ -1,0 +1,26 @@
+Package: AppsilonRecruitmentTask2020
+Type: Package
+Title: AppsilonRecruitmentTask2020
+Version: 0.1
+Date: 2020-10-25
+Author: Diego Forteza
+Maintainer: Diego Forteza <diegoforteza@gmail.com>
+Description: Shiny app for recutment task 2020
+License: Internal use
+Depends:
+    shiny,
+    shiny.semantic,
+    shinycssloaders, 
+    DT, 
+    geosphere,
+    leaflet,
+    dplyr
+Suggests:
+    testthat,
+    here
+Encoding: UTF-8 
+RoxygenNote: 7.1.1
+Collate: 
+    'calculateDistance.R'
+    'shipDropdown.R'
+    'myApp.R'
