@@ -1,0 +1,2 @@
+library(AppsilonRecruitmentTask2020)
+AppsilonRecruitmentTask2020::myApp()

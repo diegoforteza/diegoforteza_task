@@ -78,16 +78,27 @@ myApp <- function(...){
     ## main panel output  
     
     output$my_map <- renderLeaflet({
-      leaflet() %>%
+      
+      auxData <- myData()[myDist()$start:myDist()$end, ];
+      auxData$status <- c("From", "To");
+      auxData$color <- c("green", "red");
+      
+      icons <- awesomeIcons(
+        icon = 'ios-close',
+        iconColor = 'black',
+        library = 'ion',
+        markerColor = auxData$color
+      )
+      
+      leaflet(auxData) %>%
         addTiles() %>%
-        addMarkers(lng=myData()[myDist()$start, "LON"], lat=myData()[myDist()$start, "LAT"], popup="Start") %>%
-        addMarkers(lng=myData()[myDist()$end, "LON"], lat=myData()[myDist()$end, "LAT"], popup="End") %>%
+        addAwesomeMarkers(~LON, ~LAT, icon=icons, label=~status) %>%
         addMiniMap();
     })
     
     output$note <- renderText(
       print(paste0("Ship ", unique(myData()$SHIPNAME), " heading ", unique(myData()[myDist()$end, ]$DESTINATION),
-                   ". The maximun distance between two consecutive observations (measured within three minutes) corresponds to ", 
+                   ". The maximum distance between two consecutive observations (measured with a difference of less than three minutes) corresponds to ", 
                    round(as.numeric(myDist()$distance)), " meters."))
     )
     

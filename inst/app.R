@@ -55,7 +55,7 @@ server <- function(input, output, session) {
   shipId <- callModule(shipSelectorServer, "id")
   
   myData <- reactive({
-    readRDS(paste0(here::here("data/ships_data/"), shipId(), ".RDS"));
+    readRDS(paste0(here::here("inst/data/ships_data/"), shipId(), ".RDS"));
   })
 
   myDist <- reactive(calculateDistance(myData()));
